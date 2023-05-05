@@ -8,14 +8,12 @@
  Copyright (c) W.B. Yates. All rights reserved.
  History:
 
- An example of Binary Large Object (BLOB) database for arbitrary classes built on MySQL
- 
- // VARCHAR(64) used because of MD5 hash
+ An example of Binary Large Object (BLOB) database for arbitrary classes built on MySQL 8.0.29
  
  CREATE TABLE IF NOT EXISTS object 
  ( 
-      name     VARCHAR(64) NOT NULL, 
-      class    VARCHAR(64) NOT NULL, 
+      name     VARCHAR(32) NOT NULL, 
+      class    VARCHAR(32) NOT NULL, 
       ptype    TINYINT,
       contents LONGBLOB, 
       added TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null, 
