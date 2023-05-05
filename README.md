@@ -28,7 +28,9 @@ These auxiliary tables facilitate the selection and loading of (sets of) objects
 For further reading see 
 
 https://en.wikipedia.org/wiki/Object_database
+
 https://en.wikipedia.org/wiki/Binary_large_object
+
 https://en.wikipedia.org/wiki/MD5
 
  
