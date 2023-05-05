@@ -123,7 +123,6 @@ operator>>(std::istream& istr, std::map<K,T>& m)
 //
 
 
-
 template <typename K, typename T> 
 std::vector<K> 
 inline toKeyVector(const std::map<K,T>& m)
@@ -135,15 +134,6 @@ inline toKeyVector(const std::map<K,T>& m)
 }
 
 template <typename K, typename T> 
-inline void
-toKeyVector(std::vector<K>& v, const std::map<K,T>& m)
-// return a sorted vector of the unique keys in map
-{
-    v.resize(m.size());
-    std::transform( m.begin(), m.end(), v.begin(), [](const std::pair<K,T>& c) -> K { return c.first; } );
-}
-
-template <typename K, typename T> 
 inline std::vector<T> 
 toValueVector(const std::map<K,T>& m)
 // return a sorted vector of the values in map
@@ -151,15 +141,6 @@ toValueVector(const std::map<K,T>& m)
     typename std::vector<T> v(m.size());
     std::transform( m.begin(), m.end(), v.begin(), [](const std::pair<K,T>& c) -> T { return c.second; } );
     return v;
-}
-
-template <typename K, typename T> 
-inline void 
-toValueVector(std::vector<T>& v, const std::map<K,T>& m)
-// return a sorted vector of the values in map
-{
-    v.resize(m.size());
-    std::transform( m.begin(), m.end(), v.begin(), [](const std::pair<K,T>& c) -> K { return c.second; } );
 }
 
 //
@@ -183,22 +164,6 @@ toKeyMap(const std::vector<K>& v)
 }
 
 template <typename K, typename T = int> 
-void 
-toKeyMap(std::map<K,T>& m, const std::vector<K>& v)
-// use the vector index as a value
-{
-    T c = T();
-    m.clear();
-    auto lastPos = m.begin();
-    
-    for (auto i = v.begin(); i != v.end(); ++i, ++c)
-    {
-        // this works more effieciently when the vector is sorted least value first 
-        lastPos = m.insert( lastPos, typename std::map<K,T>::value_type(*i, c) );    
-    } 
-}
-
-template <typename K, typename T = int> 
 std::map<K,T> 
 toValueMap(const std::vector<T>& v)
 // use the vector index as a key
@@ -215,25 +180,6 @@ toValueMap(const std::vector<T>& v)
     } 
     return m;
 }
-
-template <typename K, typename T = int> 
-void
-toValueMap(std::map<K,T>& m, const std::vector<T>& v)
-// use the vector index as a key
-{
-    K c = K();
-    m.clear();
-    auto lastPos = m.begin();
-    
-    for (auto i = v.begin(); i != v.end(); ++i, ++c)
-    {
-        // this works more effieciently when the vector is sorted least value first 
-        lastPos = m.insert( lastPos, typename std::map<K,T>::value_type(c, *i) );    
-    } 
-}
-
-  
-
 
 #endif
 
