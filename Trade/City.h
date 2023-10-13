@@ -92,7 +92,7 @@
  
  for (int i = 0; i < City::NUMCITY; i++)
  {	
-    std::cout << City::cityIndex(i).toString() + " " + City::cityIndex(i).name() << std::endl;
+    std::cout << City::index(i).toString() + " " + City::index(i).name() << std::endl;
  }
  
  
@@ -186,7 +186,7 @@ public:
 	
 	// The IATA 3 letter code for this city i.e. "LON"
     std::string
-    toString( void ) const { return m_cityNames[m_city]; }
+    toString( void ) const { return m_cityNames[m_fromISO[m_city]]; }
 	
 	std::string
 	name( void ) const; // i.e "London" 
@@ -214,10 +214,10 @@ public:
     dist( float lat1, float lon1, float lat2, float lon2 );
     
 	static City
-	cityIndex( const int i )  { return CityCode(m_toISO[i]); }
+	index( const int i )  { return CityCode(m_toISO[i]); }
     
     static int
-	cityIndex( const City c ) { return CityCode((short) c); }
+	index( const City c ) { return CityCode(m_fromISO[c]); }
     
     bool                
 	valid( void ) const { return m_city != NOCITY; }
@@ -229,6 +229,7 @@ private:
 	static const char * const  m_cityNames[NUMCITY];
 	static const char * const  m_fullCityNames[NUMCITY];
 	static const short         m_toISO[NUMCITY];
+    static const short         m_fromISO[NUMCITY]; 
 	static const unsigned char m_capital[NUMCITY];
 	static const float         m_position[NUMCITY][2];    
     static const short         m_searchPoints[27];    
