@@ -58,7 +58,7 @@
     {
         for (int j = 1; j < Currency::NUMCURRENCY; ++j)
         {
-            ccy.setCurrency( Currency::ccyIndex(j).toString() );
+            ccy.setCurrency( Currency::index(j).toString() );
         }
         
     }
@@ -66,7 +66,7 @@
     {
         for (int j = 1; j < Currency::NUMCURRENCY; ++j)
         {
-            ccy.setCurrency2( Currency::ccyIndex(j).toString() );
+            ccy.setCurrency2( Currency::index(j).toString() );
         }
     }
     exit(1);
@@ -87,13 +87,13 @@ public:
 	// The value of the enum elements are the ISO numeric code for each currency. Note, NOCURRENCY, MAXCURRENCY, and NUMCURRENCY are not ISO codes
     enum CurrencyCode : short {
     NOCURRENCY = 0,
-    ADP = 20, AED = 784, AFA = 4, AFN = 971, ALL = 8, AMD = 51, ANG = 532, AOA = 973, AON = 24, AOR = 982, 
-    ARS = 32, ATS = 40, AUD = 36, AWG = 533, AZM = 31, AZN = 944, BAD = 70, BAM = 977, BBD = 52, BDT = 50, 
-    BEC = 993, BEF = 56, BEL = 992, BGL = 100, BGN = 975, BHD = 48, BIF = 108, BMD = 60, BND = 96, BOB = 68, 
-    BOV = 984, BRL = 986, BSD = 44, BTN = 64, BWP = 72, BYN = 933, BYR = 974, BZD = 84, CAD = 124, CDF = 976, 
+    ADP = 20,  AED = 784, AFA = 4,   AFN = 971, ALL = 8,   AMD = 51,  ANG = 532, AOA = 973, AON = 24,  AOR = 982, 
+    ARS = 32,  ATS = 40,  AUD = 36,  AWG = 533, AZM = 31,  AZN = 944, BAD = 70,  BAM = 977, BBD = 52,  BDT = 50, 
+    BEC = 993, BEF = 56,  BEL = 992, BGL = 100, BGN = 975, BHD = 48,  BIF = 108, BMD = 60,  BND = 96,  BOB = 68, 
+    BOV = 984, BRL = 986, BSD = 44,  BTN = 64,  BWP = 72,  BYN = 933, BYR = 974, BZD = 84,  CAD = 124, CDF = 976, 
     CHC = 948, CHE = 947, CHF = 756, CHW = 948, CLF = 990, CLP = 152, CNY = 156, COP = 170, COU = 970, CRC = 188, 
     CSK = 200, CUC = 931, CUP = 192, CVE = 132, CYP = 196, CZK = 203, DDM = 278, DEM = 276, DJF = 262, DKK = 208, 
-    DOP = 214, DZD = 12, ECS = 218, EEK = 233, EGP = 818, ERN = 232, ESA = 996, ESB = 995, ESP = 724, ETB = 230, 
+    DOP = 214, DZD = 12,  ECS = 218, EEK = 233, EGP = 818, ERN = 232, ESA = 996, ESB = 995, ESP = 724, ETB = 230, 
     EUR = 978, FIM = 246, FJD = 242, FKP = 238, FRF = 250, GBP = 826, GEL = 981, GHS = 936, GIP = 292, GMD = 270, 
     GNF = 324, GRD = 300, GTQ = 320, GWP = 624, GYD = 328, HKD = 344, HNL = 340, HRK = 191, HTG = 332, HUF = 348, 
     IDR = 360, IEP = 372, ILS = 376, INR = 356, IQD = 368, IRR = 364, ISK = 352, ITL = 380, JMD = 388, JOD = 400, 
@@ -103,7 +103,7 @@ public:
     MUR = 480, MVR = 462, MWK = 454, MXN = 484, MXV = 979, MYR = 458, MZM = 508, MZN = 943, NAD = 516, NGN = 566, 
     NIO = 558, NLG = 528, NOK = 578, NPR = 524, NZD = 554, OMR = 512, PAB = 590, PEN = 604, PGK = 598, PHP = 608, 
     PKR = 586, PLN = 985, PLZ = 616, PTE = 620, PYG = 600, QAR = 634, ROL = 642, RON = 946, RSD = 941, RUB = 643, 
-    RUR = 810, RWF = 646, SAR = 682, SBD = 90, SCR = 690, SDD = 736, SDG = 938, SEK = 752, SGD = 702, SHP = 654, 
+    RUR = 810, RWF = 646, SAR = 682, SBD = 90,  SCR = 690, SDD = 736, SDG = 938, SEK = 752, SGD = 702, SHP = 654, 
     SIT = 705, SKK = 703, SLE = 925, SLL = 694, SOS = 706, SRD = 968, SRG = 740, SSP = 728, STD = 678, STN = 930, 
     SVC = 222, SYP = 760, SZL = 748, THB = 764, TJR = 762, TJS = 972, TMM = 795, TMT = 934, TND = 788, TOP = 776, 
     TPE = 626, TRL = 792, TRY = 949, TTD = 780, TWD = 901, TZS = 834, UAH = 980, UAK = 804, UGX = 800, USD = 840, 
@@ -148,10 +148,10 @@ public:
 	baseCurrency( const Currency& c ) { m_baseCurrency = c; }
 
 	static Currency
-	ccyIndex( const int i ) { return CurrencyCode(m_toISO[i]); }	
+	index( const int i ) { return CurrencyCode(m_toISO[i]); }	
 
     static int
-	ccyIndex( const Currency c ) { return CurrencyCode(m_fromISO[c]); }
+	index( const Currency c ) { return CurrencyCode(m_fromISO[c]); }
     
     bool                
 	valid( void ) const { return m_ccy != NOCURRENCY; }
